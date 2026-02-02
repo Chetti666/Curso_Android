@@ -54,7 +54,7 @@ El sistema implementa principios de **programación orientada a objetos** con:
 ## 🏗️ Estructura del Proyecto
 
 ```
-Clases/
+Curso_Android/
 ├── src/
 │   ├── IOperaciones.java          # Interface con contratos de operaciones
 │   ├── Cuenta.java                # Clase principal de gestión de cuentas
@@ -80,7 +80,7 @@ cd C:\Users\USER\eclipse-workspace\Clases
 
 ### 2. Abrir en Eclipse
 - File → Open Projects from File System
-- Seleccionar la carpeta `Clases`
+- Seleccionar la carpeta `Curso_Android`
 - Click en Finish
 
 ### 3. Compilar el Proyecto
@@ -308,13 +308,6 @@ El proyecto incluye 4 pruebas automatizadas en `CuentaTest.java`:
 
 ---
 
-## 📚 Documentación Adicional
-
-- **ESPECIFICACION_CLASES.md** - Detalle completo de cada clase y método
-- **MANUAL_USUARIO.md** - Ejemplos prácticos de uso
-- **API_SPECIFICATION.md** - Documentación técnica de la interface
-- **TESTING.md** - Estrategia de pruebas y casos de test
-- **ARQUITECTURA.md** - Diagramas y patrones de diseño
 
 ---
 
@@ -349,4 +342,3 @@ Este proyecto es de código abierto y está disponible para uso educativo y come
 ---
 
 **¡Gracias por usar Wallet Multimoneda!** 🏦
-# Wallet_Mod2
