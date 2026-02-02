@@ -64,7 +64,7 @@ Curso_Android/
 ├── bin/                           # Archivos compilados (.class)
 ├── README.md                      # Este archivo
 ├── INDICE_DOCUMENTACION.md        # Documentación detallada de clases
-└── DOCUMENTOS_PRUEBAS_INDICE.md   # Documentación de pruebas
+└── DOCUMENTOS_PRUEBAS_INDICE.txt  # Documentación de pruebas
 
 
 ```
