@@ -60,7 +60,7 @@ Clases/
 │   ├── Cuenta.java                # Clase principal de gestión de cuentas
 │   ├── GestionBilletera.java      # Clase con menú principal (main)
 │   ├── CuentaTest.java            # Suite de pruebas unitarias
-│   └── Vehiculo.java              # Clase auxiliar (no utilizada en este flujo)
+│   
 ├── bin/                           # Archivos compilados (.class)
 ├── README.md                      # Este archivo
 ├── ESPECIFICACION_CLASES.md       # Documentación detallada de clases
