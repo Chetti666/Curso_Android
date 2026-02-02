@@ -1,0 +1,162 @@
+================================================================================
+                    DIAGRAMA DE CLASES - WALLET MULTIMONEDA
+================================================================================
+
+Notación UML (Unified Modeling Language)
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              «interface»                                   │
+│                           IOperaciones                                     │
+├─────────────────────────────────────────────────────────────────────────────┤
+│  Métodos a implementar:                                                    │
+│  + depositar(monto: double): void                                          │
+│  + retirar(monto: double): void                                            │
+│  + getSaldo(): double                                                      │
+│  + mostrarEstado(): void                                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │ implements
+                                    │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            Cuenta                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ATRIBUTOS PRIVADOS:                                                        │
+│  - numeroCuenta: int                                                       │
+│  - titular: String                                                         │
+│  - saldo: double                                                           │
+│  - VALOR_DOLAR: double (constante static = 900.0)                         │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ CONSTRUCTORES:                                                             │
+│  + Cuenta(numeroCuenta: int, titular: String, saldo: double)              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ MÉTODOS PÚBLICOS:                                                          │
+│  + depositar(monto: double): void                                          │
+│    └─ Suma el monto al saldo si monto > 0                                 │
+│                                                                             │
+│  + retirar(monto: double): void                                            │
+│    └─ Resta el monto del saldo si monto <= saldo y monto > 0              │
+│                                                                             │
+│  + mostrarEstado(): void                                                   │
+│    └─ Muestra: Número de cuenta, titular, saldo en CLP y USD              │
+│                                                                             │
+│  + getSaldo(): double                                                      │
+│    └─ Retorna el saldo actual en CLP                                      │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │ usa
+                                    │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        GestionBilletera                                    │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ATRIBUTOS:                                                                 │
+│  - teclado: Scanner                                                        │
+│  - billetera1: Cuenta                                                      │
+│  - opcion: int                                                             │
+│  - tasaDolar: double = 900.0                                               │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ MÉTODOS:                                                                   │
+│  + main(args: String[]): void                                              │
+│    └─ Menu interactivo con 6 opciones:                                    │
+│       1. Crear Cuenta                                                      │
+│       2. Ver Saldo (CLP/USD)                                               │
+│       3. Depositar                                                         │
+│       4. Retirar                                                           │
+│       5. Calculadora de Conversión (CLP ↔ USD)                             │
+│       6. Salir                                                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    ▲
+                                    │ prueba
+                                    │
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           CuentaTest                                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ ATRIBUTOS:                                                                 │
+│  - cuenta: Cuenta                                                          │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ MÉTODOS DE PRUEBA (@Test):                                                │
+│  + testDepositar(): void                                                   │
+│    └─ Verifica que el depósito suma correctamente                         │
+│                                                                             │
+│  + testRetirarExitoso(): void                                              │
+│    └─ Verifica que el retiro resta correctamente                          │
+│                                                                             │
+│  + testRetirarSinFondos(): void                                            │
+│    └─ Verifica que no se permite retirar sin fondos suficientes           │
+│                                                                             │
+│  + testDepositarNegativo(): void                                           │
+│    └─ Verifica que no se aceptan depósitos negativos                      │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ MÉTODO DE CONFIGURACIÓN:                                                   │
+│  + setUp() @BeforeEach                                                     │
+│    └─ Crea una nueva Cuenta antes de cada prueba                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+================================================================================
+                            RELACIONES ENTRE CLASES
+================================================================================
+
+GestionBilletera
+       │
+       │ crea y usa
+       ▼
+    Cuenta ◄──────── (CuentaTest prueba)
+       │
+       │ implementa
+       ▼
+  IOperaciones (interface - actualmente vacía)
+
+
+================================================================================
+                          FLUJO DE OPERACIONES
+================================================================================
+
+1. INICIO (GestionBilletera.main)
+   └─► Menú interactivo
+       ├─► Opción 1: Crear Cuenta(numeroCuenta, titular, saldoInicial)
+       ├─► Opción 2: Llamar a billetera1.mostrarEstado()
+       ├─► Opción 3: Llamar a billetera1.depositar(monto)
+       ├─► Opción 4: Llamar a billetera1.retirar(monto)
+       ├─► Opción 5: Calculadora de conversión CLP ↔ USD
+       └─► Opción 6: Salir
+
+2. VALIDACIONES EN CUENTA:
+   ├─ depositar(): monto > 0
+   ├─ retirar(): monto > 0 AND monto <= saldo
+   └─ mostrarEstado(): calcula conversión a USD (saldo / VALOR_DOLAR)
+
+3. PRUEBAS UNITARIAS (CuentaTest):
+   └─ JUnit 5 (@Test, @BeforeEach)
+      ├─ Prueba depósitos correctos
+      ├─ Prueba retiros correctos
+      ├─ Prueba restricciones (sin fondos, montos negativos)
+      └─ Verifica getSaldo() después de cada operación
+
+
+================================================================================
+                        CARACTERÍSTICAS PRINCIPALES
+================================================================================
+
+✓ Cuenta Multimoneda: Maneja CLP y USD
+✓ Conversión automática: Usa VALOR_DOLAR = 900.0
+✓ Validaciones: Monto > 0 y saldo suficiente
+✓ Persistencia: Datos en memoria durante la ejecución
+✓ Interfaz Usuario: Menú interactivo
+✓ Testing: Suite de pruebas unitarias con JUnit 5
+✓ Encapsulación: Atributos privados con métodos getters
+✓ Modularidad: Separación de responsabilidades
+
+
+================================================================================
+                           REQUISITOS CUMPLIDOS
+================================================================================
+
+[✓] Clase Cuenta: Gestión de saldo, depósitos y retiros
+[✓] Clase GestionBilletera: Menú principal e interacción con usuario
+[✓] Clase CuentaTest: Pruebas unitarias de funcionalidad
+[✓] IOperaciones: Interface para operaciones bancarias (preparada para extensiones)
+[✓] Conversión de monedas: CLP ↔ USD
+[✓] Validaciones: Fondos insuficientes y montos válidos
+[✓] Encapsulación: Acceso controlado a atributos
+
+================================================================================
