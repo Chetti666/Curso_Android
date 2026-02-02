@@ -59,15 +59,13 @@ Clases/
 │   ├── IOperaciones.java          # Interface con contratos de operaciones
 │   ├── Cuenta.java                # Clase principal de gestión de cuentas
 │   ├── GestionBilletera.java      # Clase con menú principal (main)
-│   ├── CuentaTest.java            # Suite de pruebas unitarias
+│   └── CuentaTest.java            # Suite de pruebas unitarias
 │   
 ├── bin/                           # Archivos compilados (.class)
 ├── README.md                      # Este archivo
-├── ESPECIFICACION_CLASES.md       # Documentación detallada de clases
-├── MANUAL_USUARIO.md              # Guía de uso del sistema
-├── API_SPECIFICATION.md           # Especificación de la interface
-├── TESTING.md                     # Documentación de pruebas
-└── ARQUITECTURA.md                # Diagrama de arquitectura
+├── INDICE_DOCUMENTACION.md        # Documentación detallada de clases
+└── DOCUMENTOS_PRUEBAS_INDICE.md   # Documentación de pruebas
+
 
 ```
 
